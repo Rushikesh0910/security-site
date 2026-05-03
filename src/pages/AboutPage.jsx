@@ -5,7 +5,7 @@ const AboutPage = () => {
   return (
     <div className="bg-gray-50 min-h-screen overflow-hidden">
       {/* 1. PAGE HEADER HERO */}
-      <div className="relative h-[400px] md:h-[500px] lg:h-[600px] bg-brand-navy overflow-hidden flex items-center justify-center">
+      <div className="relative h-[400px] md:h-[500px] lg:h-[600px] bg-brand-navy overflow-hidden flex items-center justify-center pt-24 md:pt-0">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000"
