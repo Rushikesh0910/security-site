@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* This single line makes all anchor links glide smoothly! */
+html {
+  scroll-behavior: smooth;
+}
