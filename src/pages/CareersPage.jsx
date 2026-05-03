@@ -24,7 +24,7 @@ const CareersPage = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* 1. PAGE HEADER HERO */}
-      <div className="relative h-[400px] md:h-[500px] lg:h-[600px] bg-brand-navy overflow-hidden flex items-center justify-center">
+      <div className="relative h-[400px] md:h-[500px] lg:h-[600px] bg-brand-navy overflow-hidden flex items-center justify-centerpt-24 md:pt-0">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&q=80&w=2000"
