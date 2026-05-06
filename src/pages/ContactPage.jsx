@@ -3,6 +3,7 @@ import React from "react";
 const ContactPage = () => {
   return (
     <div className="bg-gray-50 min-h-screen overflow-hidden">
+      {/* 1. PAGE HEADER HERO */}
       <div className="relative h-[400px] md:h-[500px] lg:h-[600px] bg-brand-navy overflow-hidden flex items-center justify-center pt-24 md:pt-0">
         <div className="absolute inset-0 z-0">
           <img
@@ -30,8 +31,10 @@ const ContactPage = () => {
         </div>
       </div>
 
+      {/* 2. MAIN CONTACT SECTION */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid lg:grid-cols-3 gap-12">
+          {/* Left Column: Office Details */}
           <div data-aos="fade-right" className="lg:col-span-1 space-y-8">
             <div className="bg-white p-8 rounded-xl shadow-lg border-l-4 border-brand-accent">
               <h3 className="text-xl font-bold text-brand-navy mb-6">
@@ -155,6 +158,7 @@ const ContactPage = () => {
             </div>
           </div>
 
+          {/* Right Column: Contact Form */}
           <div data-aos="fade-left" className="lg:col-span-2">
             <div className="bg-white p-8 md:p-12 rounded-xl shadow-2xl">
               <h3 className="text-2xl font-bold text-brand-navy mb-8">
@@ -246,6 +250,76 @@ const ContactPage = () => {
           </div>
         </div>
       </div>
+
+      {/* 3. NATIONWIDE PRESENCE MAP SECTION */}
+      <section className="py-16 md:py-24 bg-white border-t border-gray-200">
+        <div className="container mx-auto px-4 max-w-7xl">
+          <div className="text-center mb-12 md:mb-16" data-aos="fade-up">
+            <h2 className="text-brand-accent font-bold tracking-wide uppercase mb-2">
+              Our Footprint
+            </h2>
+            <h3 className="text-3xl md:text-4xl font-extrabold text-brand-navy mb-4">
+              Nationwide Presence
+            </h3>
+            <div className="w-20 h-1 bg-brand-accent mx-auto mb-6"></div>
+            <p className="text-gray-600 max-w-2xl mx-auto text-lg">
+              With a strong network across India, JMD Human Capital is always
+              within reach to provide reliable, on-demand security solutions.
+            </p>
+          </div>
+
+          <div
+            className="flex justify-center"
+            data-aos="fade-up"
+            data-aos-delay="100"
+          >
+            <div className="relative w-full max-w-2xl p-4">
+              {/* The Clean Base Map */}
+              <img
+                src="/indian-map.png"
+                alt="Map of India showing JMD office locations"
+                className="w-full h-auto opacity-90 drop-shadow-xl"
+              />
+
+              {/* The Location Pins */}
+              {[
+                { state: "Jammu & Kashmir", top: "13%", left: "32%" },
+                { state: "Punjab", top: "20%", left: "28%" },
+                { state: "Haryana", top: "29%", left: "31%" },
+                { state: "Uttar Pradesh", top: "33%", left: "45%" },
+                { state: "Gujarat", top: "50%", left: "15%" },
+                { state: "Madhya Pradesh", top: "44%", left: "38%" },
+                { state: "DNH", top: "54%", left: "19%" },
+                { state: "Maharashtra", top: "60%", left: "20%" },
+                { state: "Chhattisgarh", top: "48%", left: "50%" },
+                { state: "Jharkhand", top: "46%", left: "57%" },
+                { state: "Odisha", top: "53%", left: "57%" },
+                { state: "West Bengal", top: "49%", left: "66%" },
+                { state: "Telangana", top: "61%", left: "39%" },
+                { state: "Karnataka", top: "72%", left: "25%" },
+                { state: "Tamil Nadu", top: "81%", left: "37%" },
+                { state: "Kerala", top: "86%", left: "29%" },
+              ].map((loc, index) => (
+                <div
+                  key={index}
+                  className="absolute group cursor-pointer"
+                  style={{ top: loc.top, left: loc.left }}
+                >
+                  {/* Glowing pulse effect */}
+                  <div className="absolute -inset-1 bg-brand-accent rounded-full animate-ping opacity-75"></div>
+                  {/* Actual dot */}
+                  <div className="relative w-3 h-3 bg-brand-accent border-2 border-white rounded-full shadow-lg"></div>
+
+                  {/* Tooltip on hover */}
+                  <div className="absolute opacity-0 group-hover:opacity-100 transition-opacity bg-brand-navy text-white text-xs font-bold py-1 px-2 rounded whitespace-nowrap -top-8 -left-1/2 transform -translate-x-1/2 shadow-xl z-20 pointer-events-none">
+                    {loc.state}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
