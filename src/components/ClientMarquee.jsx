@@ -34,7 +34,7 @@ const ClientMarquee = () => {
     { name: "Cona", logo: "/clients/cona.png" },
     { name: "Supreme", logo: "/clients/supreme.png" },
     { name: "NSIC", logo: "/clients/nsic.png" },
-    { name: "NIFT", logo: "/clients/nift.png" },
+    { name: "NIFT", logo: "/clients/nift.svg" },
     { name: "Flair", logo: "/clients/flair.png" },
     { name: "Mundra", logo: "/clients/mundra.png" },
     { name: "DNHDD Tourism", logo: "/clients/dnhdd-tourism.png" },

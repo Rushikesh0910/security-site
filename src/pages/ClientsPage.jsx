@@ -35,7 +35,7 @@ const ClientsPage = () => {
     { name: "Supreme", logo: "/clients/supreme.png" },
     { name: "NSIC", logo: "/clients/nsic.png" },
     { name: "VKC Pride", logo: "/clients/vkc-pride.png" },
-    { name: "NIFT", logo: "/clients/nift.png" },
+    { name: "NIFT", logo: "/clients/nift.svg" },
     { name: "Flair", logo: "/clients/flair.png" },
     { name: "Mundra", logo: "/clients/mundra.png" },
     { name: "DNHDD Tourism", logo: "/clients/dnhdd-tourism.png" },
