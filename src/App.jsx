@@ -12,6 +12,8 @@ import ContactPage from "./pages/ContactPage";
 import ClientsPage from "./pages/ClientsPage";
 import CareersPage from "./pages/CareersPage";
 import AboutPage from "./pages/AboutPage";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 
 function App() {
   useEffect(() => {
@@ -36,6 +38,8 @@ function App() {
             <Route path="/clients" element={<ClientsPage />} />
             <Route path="/careers" element={<CareersPage />} />
             <Route path="/contact" element={<ContactPage />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
           </Routes>
         </div>
         <Footer />

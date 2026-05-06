@@ -125,12 +125,18 @@ const Footer = () => {
             reserved.
           </p>
           <div className="flex space-x-6">
-            <span className="text-gray-500 text-sm hover:text-brand-accent transition-colors cursor-pointer">
+            <Link
+              to="/privacy-policy"
+              className="text-gray-500 text-sm hover:text-brand-accent transition-colors cursor-pointer"
+            >
               Privacy Policy
-            </span>
-            <span className="text-gray-500 text-sm hover:text-brand-accent transition-colors cursor-pointer">
+            </Link>
+            <Link
+              to="/terms-of-service"
+              className="text-gray-500 text-sm hover:text-brand-accent transition-colors cursor-pointer"
+            >
               Terms of Service
-            </span>
+            </Link>
           </div>
         </div>
       </div>
