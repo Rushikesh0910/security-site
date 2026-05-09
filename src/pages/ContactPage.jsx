@@ -1,13 +1,73 @@
-import React from "react";
+import React, { useState } from "react";
+import contactpageImg from "../assets/contact-page.avif";
+import indianMap from "../assets/indian-map.png";
 
 const ContactPage = () => {
+  // 1. Setup state to hold the form data
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    service: "Security Guards", // Default dropdown value
+    message: "",
+  });
+
+  // Setup state for the button text
+  const [buttonStatus, setButtonStatus] = useState("Send Inquiry Now");
+
+  // 2. Handle typing in the inputs
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // 3. Handle the form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Stop page from refreshing
+    setButtonStatus("Sending...");
+
+    try {
+      // Shoot the data to your Node backend
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setButtonStatus("✅ Sent Successfully!");
+        // Clear the form
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          service: "Security Guards",
+          message: "",
+        });
+
+        // Reset button text after 3 seconds
+        setTimeout(() => setButtonStatus("Send Inquiry Now"), 3000);
+      } else {
+        setButtonStatus("❌ Error. Try Again.");
+        setTimeout(() => setButtonStatus("Send Inquiry Now"), 3000);
+      }
+    } catch (error) {
+      console.error("Failed to fetch:", error);
+      setButtonStatus("❌ Server Offline");
+      setTimeout(() => setButtonStatus("Send Inquiry Now"), 3000);
+    }
+  };
+
   return (
     <div className="bg-gray-50 min-h-screen overflow-hidden">
       {/* 1. PAGE HEADER HERO */}
       <div className="relative h-[400px] md:h-[500px] lg:h-[600px] bg-brand-navy overflow-hidden flex items-center justify-center pt-24 md:pt-0">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?auto=format&fit=crop&q=80&w=2000"
+            src={contactpageImg}
             alt="Customer Support"
             className="w-full h-full object-cover opacity-40"
           />
@@ -89,7 +149,7 @@ const ContactPage = () => {
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={2}
-                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 00-2-2H5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                       />
                     </svg>
                   </div>
@@ -164,50 +224,85 @@ const ContactPage = () => {
               <h3 className="text-2xl font-bold text-brand-navy mb-8">
                 Send a Client Inquiry
               </h3>
-              <form className="grid md:grid-cols-2 gap-6">
+
+              {/* Added onSubmit handler here */}
+              <form
+                onSubmit={handleSubmit}
+                className="grid md:grid-cols-2 gap-6"
+              >
                 <div className="md:col-span-1">
                   <label className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">
-                    Full Name
+                    Full Name *
                   </label>
                   <input
                     type="text"
+                    name="name" // Added name
+                    value={formData.name} // Connected to state
+                    onChange={handleChange} // Added onChange handler
+                    required
                     className="w-full bg-gray-50 border-2 border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-accent transition-all"
-                    placeholder="John Doe"
+                    placeholder="Enter your full name"
                   />
                 </div>
                 <div className="md:col-span-1">
                   <label className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">
-                    Phone Number
+                    Phone Number *
                   </label>
                   <input
                     type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    maxLength="10"
+                    minLength="10"
+                    pattern="[0-9]{10}"
+                    title="Please enter a valid 10-digit mobile number"
                     className="w-full bg-gray-50 border-2 border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-accent transition-all"
-                    placeholder="+91 00000 00000"
+                    placeholder="Enter 10-digit mobile number"
                   />
                 </div>
                 <div className="md:col-span-2">
                   <label className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">
-                    Email Address
+                    Email Address *
                   </label>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
                     className="w-full bg-gray-50 border-2 border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-accent transition-all"
-                    placeholder="you@company.com"
+                    placeholder="Enter your email address"
                   />
                 </div>
 
                 <div className="md:col-span-2">
                   <label className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">
-                    Service Required
+                    Service *
                   </label>
                   <div className="relative">
-                    <select className="w-full bg-gray-50 border-2 border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-accent transition-all appearance-none cursor-pointer">
-                      <option>Security Guards</option>
-                      <option>House Keeping Services</option>
-                      <option>Manpower Services</option>
-                      <option>HR Consultancy</option>
-                      <option>Investigation Services</option>
-                      <option>Property Management</option>
+                    <select
+                      name="service"
+                      value={formData.service}
+                      onChange={handleChange}
+                      className="w-full bg-gray-50 border-2 border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-accent transition-all appearance-none cursor-pointer"
+                    >
+                      {/* Added value attributes to options so React knows what was selected */}
+                      <option value="Security Guards">Security Guards</option>
+                      <option value="House Keeping Services">
+                        House Keeping Services
+                      </option>
+                      <option value="Manpower Services">
+                        Manpower Services
+                      </option>
+                      <option value="HR Consultancy">HR Consultancy</option>
+                      <option value="Investigation Services">
+                        Investigation Services
+                      </option>
+                      <option value="Property Management">
+                        Property Management
+                      </option>
                     </select>
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
                       <svg
@@ -233,16 +328,21 @@ const ContactPage = () => {
                   </label>
                   <textarea
                     rows="4"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
                     className="w-full bg-gray-50 border-2 border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:border-brand-accent transition-all"
                     placeholder="Tell us about your requirements..."
                   ></textarea>
                 </div>
                 <div className="md:col-span-2 mt-4">
                   <button
-                    type="button"
-                    className="w-full bg-brand-navy text-white font-bold text-lg py-5 rounded-lg hover:bg-brand-charcoal transition-all transform hover:scale-[1.01] shadow-xl border-b-4 border-brand-accent"
+                    type="submit" // Changed to submit
+                    disabled={buttonStatus === "Sending..."}
+                    className="w-full bg-brand-navy text-white font-bold text-lg py-5 rounded-lg hover:bg-brand-charcoal transition-all transform hover:scale-[1.01] shadow-xl border-b-4 border-brand-accent disabled:opacity-70 disabled:cursor-not-allowed"
                   >
-                    Send Inquiry Now
+                    {buttonStatus} {/* Dynamically shows text */}
                   </button>
                 </div>
               </form>
@@ -276,7 +376,7 @@ const ContactPage = () => {
             <div className="relative w-full max-w-2xl p-4">
               {/* The Clean Base Map */}
               <img
-                src="/indian-map.png"
+                src={indianMap}
                 alt="Map of India showing JMD office locations"
                 className="w-full h-auto opacity-90 drop-shadow-xl"
               />

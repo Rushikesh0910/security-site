@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import servicesImg from "../assets/services.avif";
 
 const ServicesPage = () => {
   const services = [
@@ -125,7 +126,7 @@ const ServicesPage = () => {
       <div className="relative h-[400px] md:h-[500px] lg:h-[600px] bg-brand-navy overflow-hidden flex items-center justify-center pt-24 md:pt-0">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=2000"
+            src={servicesImg}
             alt="Business Services"
             className="w-full h-full object-cover opacity-40"
           />

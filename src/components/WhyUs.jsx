@@ -1,4 +1,5 @@
 import React from "react";
+import whyUsImg from "../assets/why-us.avif";
 
 const WhyUs = () => {
   return (
@@ -14,7 +15,7 @@ const WhyUs = () => {
               <div className="absolute inset-0 bg-brand-navy opacity-20 z-10 hover:opacity-0 transition-opacity duration-300"></div>
               <img
                 className="w-full h-full object-cover min-h-[400px]"
-                src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1000"
+                src={whyUsImg}
                 alt="Professional security team"
               />
             </div>

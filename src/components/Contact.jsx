@@ -1,6 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Contact = () => {
+  // 1. Added State to make the form functional
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    service: "Security Guards",
+  });
+
+  const [buttonStatus, setButtonStatus] = useState("Request a Call Back");
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setButtonStatus("Sending...");
+
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // Automatically formats a message since this UI doesn't have a message box
+        body: JSON.stringify({
+          ...formData,
+          message: `Please call me back regarding ${formData.service}.`,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setButtonStatus("✅ Request Sent!");
+        setFormData({
+          name: "",
+          phone: "",
+          email: "",
+          service: "Security Guards",
+        });
+        setTimeout(() => setButtonStatus("Request a Call Back"), 3000);
+      } else {
+        setButtonStatus("❌ Error. Try Again.");
+        setTimeout(() => setButtonStatus("Request a Call Back"), 3000);
+      }
+    } catch (error) {
+      console.error("Failed to fetch:", error);
+      setButtonStatus("❌ Server Offline");
+      setTimeout(() => setButtonStatus("Request a Call Back"), 3000);
+    }
+  };
+
   return (
     <div className="bg-brand-charcoal text-white pt-20 pb-20 border-t-4 border-brand-accent overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,7 +112,7 @@ const Contact = () => {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 00-2-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
                 <span className="text-gray-300 font-medium break-all">
@@ -98,53 +151,81 @@ const Contact = () => {
             data-aos="fade-left"
             className="bg-brand-navy p-8 rounded-xl shadow-2xl"
           >
-            <form className="space-y-6">
+            {/* Added onSubmit handler here */}
+            <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label className="block text-sm font-medium text-gray-400 mb-1">
-                  Full Name
+                  Full Name *
                 </label>
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
                   className="w-full bg-brand-charcoal border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all"
-                  placeholder="Enter your name"
+                  placeholder="Enter your full name"
                 />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-400 mb-1">
-                    Phone Number
+                    Phone Number *
                   </label>
                   <input
                     type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    maxLength="10"
+                    minLength="10"
+                    pattern="[0-9]{10}"
+                    title="Please enter a valid 10-digit mobile number"
                     className="w-full bg-brand-charcoal border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all"
-                    placeholder="+91 00000 00000"
+                    placeholder="Enter 10-digit mobile number"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-gray-400 mb-1">
-                    Email Address
+                    Email Address *
                   </label>
                   <input
                     type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
                     className="w-full bg-brand-charcoal border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all"
-                    placeholder="you@example.com"
+                    placeholder="Enter your email address"
                   />
                 </div>
               </div>
 
               <div>
                 <label className="block text-sm font-medium text-gray-400 mb-1">
-                  Type of Service Needed
+                  Type of Service Needed *
                 </label>
                 <div className="relative">
-                  <select className="w-full bg-brand-charcoal border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all appearance-none cursor-pointer">
-                    <option>Security Guards</option>
-                    <option>House Keeping Services</option>
-                    <option>Manpower Services</option>
-                    <option>HR Consultancy</option>
-                    <option>Investigation Services</option>
-                    <option>Property Management</option>
+                  <select
+                    name="service"
+                    value={formData.service}
+                    onChange={handleChange}
+                    className="w-full bg-brand-charcoal border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent transition-all appearance-none cursor-pointer"
+                  >
+                    <option value="Security Guards">Security Guards</option>
+                    <option value="House Keeping Services">
+                      House Keeping Services
+                    </option>
+                    <option value="Manpower Services">Manpower Services</option>
+                    <option value="HR Consultancy">HR Consultancy</option>
+                    <option value="Investigation Services">
+                      Investigation Services
+                    </option>
+                    <option value="Property Management">
+                      Property Management
+                    </option>
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
                     <svg
@@ -165,10 +246,11 @@ const Contact = () => {
               </div>
 
               <button
-                type="button"
-                className="w-full bg-brand-accent text-brand-navy font-bold text-lg py-4 rounded-lg hover:bg-yellow-400 transition-all transform hover:scale-[1.02] shadow-lg"
+                type="submit" // Changed from type="button" so validation triggers properly
+                disabled={buttonStatus === "Sending..."}
+                className="w-full bg-brand-accent text-brand-navy font-bold text-lg py-4 rounded-lg hover:bg-yellow-400 transition-all transform hover:scale-[1.02] shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
               >
-                Request a Call Back
+                {buttonStatus}
               </button>
             </form>
           </div>

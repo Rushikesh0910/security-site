@@ -11,7 +11,6 @@ import About from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import ClientsPage from "./pages/ClientsPage";
 import CareersPage from "./pages/CareersPage";
-import AboutPage from "./pages/AboutPage";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 

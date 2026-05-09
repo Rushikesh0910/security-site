@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import heroBg from "../assets/hero-jsx-building.avif";
 
 const Hero = () => {
   return (
@@ -9,8 +10,7 @@ const Hero = () => {
         data-aos="zoom-out"
         data-aos-duration="2000"
         style={{
-          backgroundImage:
-            'url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1920")',
+          backgroundImage: "url(${heroBg})",
           backgroundPosition: "center",
           backgroundSize: "cover",
         }}

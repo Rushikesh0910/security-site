@@ -2,6 +2,9 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ClientMarquee from "../components/ClientMarquee";
 import Contact from "../components/Contact";
+import WhyUs from "../components/WhyUs";
+import heroBg from "../assets/hero-jsx-building.avif";
+import herocctvImg from "../assets/hero-cctv.avif";
 
 // Smooth Counter Component
 const Counter = ({ end, duration = 4000 }) => {
@@ -33,7 +36,7 @@ const Home = () => {
       <div className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 bg-brand-navy min-h-screen flex items-center">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&q=80&w=2000"
+            src={herocctvImg}
             alt="Security Guards"
             className="w-full h-full object-cover opacity-20"
           />
@@ -124,7 +127,7 @@ const Home = () => {
             <div className="relative" data-aos="fade-left">
               <div className="absolute inset-0 bg-brand-accent rounded-xl transform translate-x-4 translate-y-4 -z-10"></div>
               <img
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80"
+                src={heroBg}
                 alt="Corporate Security"
                 className="rounded-xl shadow-xl w-full object-cover h-[500px]"
               />
@@ -172,6 +175,8 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <WhyUs />
 
       {/* 5. WHAT WE DO SECTION */}
       <div className="py-24 bg-gray-50">

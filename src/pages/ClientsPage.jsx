@@ -1,4 +1,5 @@
 import React from "react";
+import clientsImg from "../assets/clients.avif";
 
 const ClientsPage = () => {
   const clients = [
@@ -56,7 +57,7 @@ const ClientsPage = () => {
       <div className="relative h-[400px] md:h-[500px] lg:h-[600px] bg-brand-navy overflow-hidden flex items-center justify-center pt-24 md:pt-0">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&q=80&w=2000"
+            src={clientsImg}
             alt="Corporate Partners"
             className="w-full h-full object-cover opacity-40"
           />

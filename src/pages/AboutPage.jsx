@@ -1,5 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import aboutUsImg from "../assets/about-us.avif";
+import ourHistoryImg from "../assets/our-history.avif";
+import indianMap from "../assets/indian-map.png";
 
 const AboutPage = () => {
   return (
@@ -8,7 +11,7 @@ const AboutPage = () => {
       <div className="relative h-[400px] md:h-[500px] lg:h-[600px] bg-brand-navy overflow-hidden flex items-center justify-center pt-24 md:pt-0">
         <div className="absolute inset-0 z-0">
           <img
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000"
+            src={aboutUsImg}
             alt="Office Building"
             className="w-full h-full object-cover opacity-40"
           />
@@ -37,7 +40,7 @@ const AboutPage = () => {
           <div className="relative" data-aos="fade-right">
             <div className="absolute inset-0 bg-brand-accent rounded-xl transform -translate-x-4 translate-y-4 -z-10"></div>
             <img
-              src="https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&q=80&w=800"
+              src={ourHistoryImg}
               alt="JMD Team"
               className="rounded-xl shadow-2xl w-full object-cover h-[400px]"
             />
@@ -236,7 +239,7 @@ const AboutPage = () => {
             <div className="relative w-full max-w-2xl p-4">
               {/* The Clean Base Map */}
               <img
-                src="indian-map.png"
+                src={indianMap}
                 alt="Map of India showing JMD office locations"
                 className="w-full h-auto opacity-80"
                 style={{
