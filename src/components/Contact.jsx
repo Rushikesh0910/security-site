@@ -154,10 +154,15 @@ const Contact = () => {
             {/* Added onSubmit handler here */}
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-400 mb-1">
+                <label
+                  htmlFor="contact-name"
+                  className="block text-sm font-medium text-gray-400 mb-1"
+                >
                   Full Name *
                 </label>
                 <input
+                  id="contact-name"
+                  autoComplete="name"
                   type="text"
                   name="name"
                   value={formData.name}
@@ -170,10 +175,15 @@ const Contact = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-1">
+                  <label
+                    htmlFor="contact-phone"
+                    className="block text-sm font-medium text-gray-400 mb-1"
+                  >
                     Phone Number *
                   </label>
                   <input
+                    id="contact-phone"
+                    autoComplete="tel"
                     type="tel"
                     name="phone"
                     value={formData.phone}
@@ -188,10 +198,15 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-400 mb-1">
+                  <label
+                    htmlFor="contact-email"
+                    className="block text-sm font-medium text-gray-400 mb-1"
+                  >
                     Email Address *
                   </label>
                   <input
+                    id="contact-email"
+                    autoComplete="email"
                     type="email"
                     name="email"
                     value={formData.email}
@@ -204,11 +219,15 @@ const Contact = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-400 mb-1">
+                <label
+                  htmlFor="contact-service"
+                  className="block text-sm font-medium text-gray-400 mb-1"
+                >
                   Type of Service Needed *
                 </label>
                 <div className="relative">
                   <select
+                    id="contact-service"
                     name="service"
                     value={formData.service}
                     onChange={handleChange}
@@ -246,7 +265,7 @@ const Contact = () => {
               </div>
 
               <button
-                type="submit" // Changed from type="button" so validation triggers properly
+                type="submit"
                 disabled={buttonStatus === "Sending..."}
                 className="w-full bg-brand-accent text-brand-navy font-bold text-lg py-4 rounded-lg hover:bg-yellow-400 transition-all transform hover:scale-[1.02] shadow-lg disabled:opacity-70 disabled:cursor-not-allowed"
               >

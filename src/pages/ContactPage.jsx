@@ -231,10 +231,15 @@ const ContactPage = () => {
                 className="grid md:grid-cols-2 gap-6"
               >
                 <div className="md:col-span-1">
-                  <label className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">
+                  <label
+                    htmlFor="page-name"
+                    className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide"
+                  >
                     Full Name *
                   </label>
                   <input
+                    id="page-name"
+                    autoComplete="name"
                     type="text"
                     name="name" // Added name
                     value={formData.name} // Connected to state
@@ -245,10 +250,15 @@ const ContactPage = () => {
                   />
                 </div>
                 <div className="md:col-span-1">
-                  <label className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">
+                  <label
+                    htmlFor="page-phone"
+                    className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide"
+                  >
                     Phone Number *
                   </label>
                   <input
+                    id="page-phone"
+                    autoComplete="tel"
                     type="tel"
                     name="phone"
                     value={formData.phone}
@@ -263,10 +273,15 @@ const ContactPage = () => {
                   />
                 </div>
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">
+                  <label
+                    htmlFor="page-email"
+                    className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide"
+                  >
                     Email Address *
                   </label>
                   <input
+                    id="page-email"
+                    autoComplete="email"
                     type="email"
                     name="email"
                     value={formData.email}
@@ -278,11 +293,15 @@ const ContactPage = () => {
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">
+                  <label
+                    htmlFor="page-service"
+                    className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide"
+                  >
                     Service *
                   </label>
                   <div className="relative">
                     <select
+                      id="page-service"
                       name="service"
                       value={formData.service}
                       onChange={handleChange}
@@ -323,10 +342,14 @@ const ContactPage = () => {
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">
+                  <label
+                    htmlFor="page-message"
+                    className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide"
+                  >
                     Message
                   </label>
                   <textarea
+                    id="page-message"
                     rows="4"
                     name="message"
                     value={formData.message}
