@@ -322,6 +322,7 @@ const ContactPage = () => {
                       <option value="Property Management">
                         Property Management
                       </option>
+                      <option value="Others">Others</option>
                     </select>
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-500">
                       <svg
