@@ -116,7 +116,7 @@ const Contact = () => {
                   />
                 </svg>
                 <span className="text-gray-300 font-medium break-all">
-                  info@jmdhumancapital.com
+                  ajeet.jmdsecurityservices@gmail.com
                 </span>
               </div>
               <div className="flex items-start">

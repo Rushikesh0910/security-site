@@ -94,7 +94,7 @@ const Footer = () => {
                 <span className="block text-white font-medium mb-1">
                   Email:
                 </span>
-                info@jmdhumancapital.com
+                ajeet.jmdsecurityservices@gmail.com
               </li>
             </ul>
           </div>

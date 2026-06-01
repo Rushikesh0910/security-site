@@ -158,7 +158,7 @@ const ContactPage = () => {
                       Email
                     </p>
                     <p className="text-lg font-bold text-brand-navy break-all">
-                      info@jmdhumancapital.com
+                      ajeet.jmdsecurityservices@gmail.com
                     </p>
                   </div>
                 </div>
