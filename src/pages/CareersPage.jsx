@@ -48,10 +48,13 @@ const CareersPage = () => {
     submitData.append("resume", resumeFile);
 
     try {
-      const response = await fetch("http://localhost:5000/api/career", {
-        method: "POST",
-        body: submitData,
-      });
+      const response = await fetch(
+        "https://jmd-backend-klgu.onrender.com/api/career",
+        {
+          method: "POST",
+          body: submitData,
+        },
+      );
 
       const data = await response.json();
 
