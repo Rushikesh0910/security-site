@@ -305,7 +305,7 @@ const CareersPage = () => {
 
               <div>
                 <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Upload Resume (PDF/DOC) *
+                  Upload Resume (PDF/DOC) * (Max-10MB)
                 </label>
                 <input
                   id="resume-upload"
