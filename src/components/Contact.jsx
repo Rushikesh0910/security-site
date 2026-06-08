@@ -20,17 +20,20 @@ const Contact = () => {
     setButtonStatus("Sending...");
 
     try {
-      const response = await fetch("http://localhost:5000/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        "https://jmd-backend-klgu.onrender.com/api/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          // Automatically formats a message since this UI doesn't have a message box
+          body: JSON.stringify({
+            ...formData,
+            message: `Please call me back regarding ${formData.service}.`,
+          }),
         },
-        // Automatically formats a message since this UI doesn't have a message box
-        body: JSON.stringify({
-          ...formData,
-          message: `Please call me back regarding ${formData.service}.`,
-        }),
-      });
+      );
 
       const data = await response.json();
 
